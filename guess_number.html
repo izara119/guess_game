@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <title>Guessing Game</title>
+ </head>
+  
+<body>
+<h1>Guessing Game</h1>
+  
+<p>The game selected a random number from 1 - 100. 
+See if you can guess it in 10 tries..</p>
+  
+<div class='form'>
+    <label>Number of guess left: </label>
+    <input type="text" id="numberOfGuess" disabled="true"/> <br><br>
+    <label >Enter a guess: </label>
+    <input type = 'text' id = 'guessField'>
+    <input type = 'button' value = 'Submit guess' 
+           class = 'guessSubmit' id = 'submitguess' onclick='check()'>
+</div>
+ 
+  <script type = 'text/javascript'>
+    // random value generated 0 to 100
+    var y = Math.floor(Math.random() * 100 + 1);
+      
+    // counting the number of guesses
+    // made for correct Guess
+    var guess = 1;
+
+    //Setting the limit of guesses
+    var limit = 10 + 1;
+
+    //To display the number of guess left
+    document.getElementById('numberOfGuess').value = 11 - guess;
+    
+    //To check if the guess is equals, greater or lesser than the generated number
+    function check(){
+        var x = document.getElementById('guessField').value;
+        if(x == y){
+            //if guessed number is greater than actual number 
+            alert('Good Job! You guessed it! '+ x);
+            reset();
+        }else if(x > y)  
+           {    
+               guess++;
+               alert('Oops, Your guess was HIGH.');
+               limitCheck(guess, limit);
+           }
+           else
+           {
+               guess++;
+               alert('Oops, Your guess was LOW.')
+               limitCheck(guess, limit);
+           }
+           document.getElementById('numberOfGuess').value = 11 - guess;
+    }
+
+    //To check if limist of number of guess is reached.
+    function limitCheck(a, b){
+        if(a == b){
+            reset();
+        }
+    }
+
+    //To reset the game
+    function reset(){
+        alert('You have reached maximum guess.. game will reset.')
+        guess = 1;
+        limit = 10 + 1;
+    }
+
+</script>
+</body>
+</html>
